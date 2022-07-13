@@ -176,5 +176,6 @@ def view_message(request, pk):
 
 
 def create_message(request):
+    profile = 'profile'
     context = {}
     return render(request, 'users/message_form.html', context)
