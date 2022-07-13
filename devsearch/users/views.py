@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .utils import search_profiles, paginate_profiles
-from .models import Profile
+from .models import Profile, Message
 from .forms import CustomUserCreationForm, ProfileForm, SkillForm
 
 
@@ -14,7 +14,7 @@ def login_user(request):
     if request.user.is_authenticated:
         return redirect('profiles')
     if request.method == 'POST':
-        username = request.POST['username'].lower()
+        username = request.POST['username']
         password = request.POST['password']
 
         try:
@@ -151,3 +151,30 @@ def delete_skill(request, pk):
 
     context = {'object': skill}
     return render(request, 'delete_template.html', context)
+
+
+@login_required(login_url='login')
+def inbox(request,):
+    profile = request.user.profile
+    messagesRequests = profile.messages.all()
+    unreadCount = messagesRequests.filter(is_read=False).count()
+    context = {'messagesRequests': messagesRequests, 'unreadCount': unreadCount}
+    return render(request, 'users/inbox.html', context)
+
+
+@login_required(login_url='login')
+def view_message(request, pk):
+    profile = request.user.profile
+    message = profile.messages.get(id=pk)
+
+    if message.is_read is False:
+        message.is_read = True
+        message.save()
+
+    context = {'message': message}
+    return render(request, 'users/message.html', context)
+
+
+def create_message(request):
+    context = {}
+    return render(request, 'users/message_form.html', context)
