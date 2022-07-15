@@ -29,7 +29,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-this_is_it_mate = 'em2a84allr2'
 # Application definition
 
 INSTALLED_APPS = [
