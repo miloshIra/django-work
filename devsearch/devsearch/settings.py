@@ -29,7 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+this_is_it_mate = 'em2a84allr2'
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,6 +42,9 @@ INSTALLED_APPS = [
 
     'projects.apps.ProjectsConfig',
     'users.apps.UsersConfig',
+
+    'rest_framework',
+
 ]
 
 MIDDLEWARE = [
@@ -120,6 +123,18 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+# SENDGRID_API_KEY = os.getenv('sendmailAPI')
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = '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'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'maritonski@gmail.com'
+
+second_api = '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'
 
 
 # Static files (CSS, JavaScript, Images)
