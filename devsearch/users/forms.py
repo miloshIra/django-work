@@ -31,7 +31,6 @@ class ProfileForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
-
         for name, field in self.fields.items():
             field.widget.attrs.update({'class': 'input'})
 
@@ -41,6 +40,8 @@ class SkillForm(ModelForm):
         model = Skill
         field = '__all__'
         exclude = ['owner']
+        labels = {'name': 'Skill name:'
+                  }
 
     def __init__(self, *args, **kwargs):
         super(SkillForm, self).__init__(*args, **kwargs)

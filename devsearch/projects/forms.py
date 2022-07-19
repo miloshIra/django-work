@@ -11,7 +11,12 @@ class ProjectForm(ModelForm):
                   'description',
                   'demo_link',
                   'source_link',
-                  'tags']
+                  'tags']  # add 'tags' here.
+
+        labels = {'title': 'Project title:',
+                  'description': 'Project desc: '
+                  }
+
         widgets = {
                   'tags': forms.CheckboxSelectMultiple(),
                   }
