@@ -28,6 +28,7 @@ def create_profile(sender, instance, created, **kwargs):
             [profile.email],
             fail_silently=False
         )
+        print('mail sent')
 
 
 def update_user(sender, instance, created, **kwargs):
